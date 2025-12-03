@@ -1,6 +1,5 @@
 import math
-import time
-import random 
+import random
 
 
 # Nearest Neighbor Classifier
@@ -96,29 +95,3 @@ def normalize(data):
             row[col] = (row[col] - means[col]) / stds[col]
 
     return data
-
-
-# Tests
-def main():
-    classifier = NearestNeighbor()
-    validator = Validator(classifier)
-
-    # Small dataset test
-    small = load_dataset("small-test-dataset.txt")
-    small = normalize(small)
-
-    print("Testing small dataset, expected output: ~0.89 when using {3,5,7}")
-    acc_small = validator.leave_one_out(small, [3,5,7])
-    print(f"Accuracy when using features {{3,5,7}} on small dataset: {acc_small:.3f}\n")
-
-    # Large dataset test
-    large = load_dataset("large-test-dataset.txt")
-    large = normalize(large)
-
-    print("Testing large dataset, expected output: ~0.949 when using {1,15,27}")
-    acc_large = validator.leave_one_out(large, [1,15,27])
-    print(f"Accuracy when using features {{1,15,27}} on large dataset: {acc_large:.3f}\n")
-    
-
-# Run Tests
-main()
